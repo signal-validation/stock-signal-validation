@@ -1,0 +1,5 @@
+*_results.json
+*_log.txt
+*.pyc
+__pycache__/
+figures/output/
