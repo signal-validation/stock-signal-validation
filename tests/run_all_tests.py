@@ -1,7 +1,7 @@
 """
 Statistical Validation Suite — Runner
 =======================================
-Executes all 8 tests sequentially, captures output, combines results.
+Executes all 9 tests sequentially, captures output, combines results.
 
 Tests:
   #10: Effective N / Autocorrelation (foundation)
@@ -12,6 +12,7 @@ Tests:
   #05: Transaction Cost Sensitivity
   #06: Survivorship Bias Simulation
   #07: Fama-MacBeth Factor Regression
+  #11: Per-Regime Factor Regression
 
 Usage:
   python3 run_all_tests.py
@@ -37,6 +38,7 @@ TESTS = [
     ('test05', 'test05_transaction_costs.py', 'test05_transaction_costs_results.json', 'Transaction Cost Sensitivity'),
     ('test06', 'test06_survivorship_bias.py', 'test06_survivorship_bias_results.json', 'Survivorship Bias Simulation'),
     ('test07', 'test07_factor_regression.py', 'test07_factor_regression_results.json', 'Factor Regression'),
+    ('test11', 'test11_regime_factor_regression.py', 'test11_regime_factor_regression_results.json', 'Per-Regime Factor Regression'),
 ]
 
 

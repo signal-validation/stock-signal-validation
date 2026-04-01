@@ -6,7 +6,7 @@ Anyone can clone this repo, run the tests, and verify every statistical claim in
 
 ## What This Is
 
-A stock signal engine produces buy signals on US equities. Each signal predicts that the stock will rise over the next 20 trading days. This suite tests whether that prediction has statistically significant edge using 8 standard tests and 5 visual proof analyses.
+A stock signal engine produces buy signals on US equities. Each signal predicts that the stock will rise over the next 20 trading days. This suite tests whether that prediction has statistically significant edge using 9 standard tests and 5 visual proof analyses.
 
 **What the data contains:** For each signal — the date it fired, the ticker, and the actual forward returns at 5, 10, 20, and 40 trading days (plus S&P 500 returns over the same windows). This is everything needed to evaluate whether the signals work. No engine internals are included.
 
@@ -16,7 +16,7 @@ A stock signal engine produces buy signals on US equities. Each signal predicts 
 git clone https://github.com/signal-validation/stock-signal-validation.git
 cd statistical-validation
 pip install numpy pandas matplotlib
-python tests/run_all_tests.py      # 8 statistical tests (~5 min)
+python tests/run_all_tests.py      # 9 statistical tests (~6 min)
 python proofs/run_all_proofs.py    # 5 visual analyses (~15 sec)
 ```
 
@@ -29,7 +29,7 @@ python proofs/run_all_proofs.py    # 5 visual analyses (~15 sec)
 
 All tests use `seed=42` for deterministic, reproducible results.
 
-## The 8 Statistical Tests
+## The 9 Statistical Tests
 
 | Test | File | What It Proves |
 |---|---|---|
@@ -41,6 +41,7 @@ All tests use `seed=42` for deterministic, reproducible results.
 | **#05 Transaction Costs** | `test05_transaction_costs.py` | Tests whether edge survives realistic trading costs (result: breakeven > 0.50% one-way) |
 | **#06 Survivorship Bias** | `test06_survivorship_bias.py` | Simulates impact of delisted stocks (result: -1.2pp under realistic assumptions, still above 50%) |
 | **#07 Factor Regression** | `test07_factor_regression.py` | Carhart 4-factor regression using official Fama-French data (result: alpha +0.97% per trade, t=5.60, not explained by market/size/value/momentum) |
+| **#11 Per-Regime Factor Regression** | `test11_regime_factor_regression.py` | Splits signals into bear (market below 50-day SMA) and bull regimes, runs Carhart 4-factor on each. Tests whether bear-market outperformance is genuine or momentum crash avoidance. (result: bear alpha +1.49%, t=2.72, p=0.007 — genuine; momentum NOT significant in bear subsample) |
 
 ## The 5 Visual Proofs
 
